@@ -1,5 +1,4 @@
 import React,{useState,useEffect} from 'react' ;
-import { Redirect, Route, Switch, BrowserRouter } from 'react-router-dom';
 import './App.css';
 import RenderDoc from './RenderDoc' ;
 /* 
@@ -37,7 +36,7 @@ function App() {
   }
 
   const getResults = async() => {
-    fetch(`https://www.omdbapi.com/?t=${query}&apikey=${APIKEY}`)
+    fetch(`https://www.omdbapi.com/?t=${query}&apikey=${APIKEY}&plot=full`)
       .then(data => data.json())
       .then(result => setResults(result)) 
       .catch(err => console.error(err)) 
@@ -59,17 +58,21 @@ function App() {
         </form>
         <div>
         {
-          results != null ?
-          <RenderDoc 
-          title={results.Title} 
-          release={results.Released} 
-          languages={results.Language}
-          director={results.Director}
-          description={results.Plot}
-          image={results.Poster}
+          results != null 
+          ?     
+           <RenderDoc 
+            title={results.Title} 
+            release={results.Released} 
+            languages={results.Language}
+            director={results.Director}
+            description={results.Plot}
+            image={results.Poster}
+            genre ={results.Genre}
+            ratings = {results.Ratings}
+            earnings = {results.BoxOffice}
           /> 
           :
-          <div> </div>
+          <div> hello there</div>
         }
         </div>
     </div>
