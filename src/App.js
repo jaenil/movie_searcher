@@ -18,6 +18,13 @@ function App() {
 
   //useEffect 
   useEffect (() => {
+    const getResults = async() => {
+      fetch(`https://www.omdbapi.com/?t=${query}&apikey=${APIKEY}&plot=full`)
+        .then(data => data.json())
+        .then(result => setResults(result)) 
+        .catch(err => console.error(err)) 
+    }
+  
     getResults()
   },[query]) ;
 
@@ -35,12 +42,6 @@ function App() {
     setQuery('') ;
   }
 
-  const getResults = async() => {
-    fetch(`https://www.omdbapi.com/?t=${query}&apikey=${APIKEY}&plot=full`)
-      .then(data => data.json())
-      .then(result => setResults(result)) 
-      .catch(err => console.error(err)) 
-  }
 
   return (
     <div className="App">
@@ -58,7 +59,7 @@ function App() {
         </form>
         <div>
         {
-          results != null 
+          results.length !== 0 
           ?     
            <RenderDoc 
             title={results.Title} 

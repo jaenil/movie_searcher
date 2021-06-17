@@ -5,7 +5,7 @@ const RenderDoc = (props) => {
     return(
         <div className='RenderDoc'>
           <div className='item1'>
-            <img src={props.image} className='image'/>
+            <img src={props.image} className='image'/>      
           </div>
           <div className='item2'>
             <h2>{props.title}</h2>
